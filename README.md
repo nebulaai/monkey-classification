@@ -4,9 +4,30 @@ image_classification.ipynb consists of transfer learning with ResNet50
 
 tensorflow 1.13.1 is required (1.13.1 is the default package version on nbai.io as of Dec 2, 2020)
 
+
+
 ## Dataset
 
-10 Monkey Species: https://calibration-ipfs.filswan.com/ipfs/QmQhckZqk2rPyeyekt6KMTAR4TEKAs1xi8R3DTCgFqfQgs
+10 Monkey Species: https://www.kaggle.com/slothkong/10-monkey-species
+
+### Install Lib
+Install M1 Tensofolow
+https://caffeinedev.medium.com/how-to-install-tensorflow-on-m1-mac-8e9b91d93706
+
+Install M1 opencv
+https://blog.roboflow.com/m1-opencv/
+
+`
+conda install -c conda-forge opencv
+`
+
+Install Python lib
+
+`
+pip install matplotlib
+pip install pillow
+pip install scipy
+`
 
 ## Running ipynb
 
