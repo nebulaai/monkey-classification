@@ -19,8 +19,6 @@ Install Jupyter Notebook & Pandas
 conda install -c conda-forge -y pandas jupyter
 ```
 
-
-
 Install M1 opencv
 https://blog.roboflow.com/m1-opencv/
 
