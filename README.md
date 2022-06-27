@@ -78,11 +78,12 @@ Create folder with name "monkey" in the same directory and unzip the dataset to 
 ```
 
 
-Run the following cell to install pygate_grpc and opencv and restart kernel
+Install TensorFlow
 
 ```
-!pip install pygate_grpc==0.0.14
-!pip install opencv-contrib-python==4.1.0.25
+pip install opencv-contrib-python==4.5.5.64
+pip install --upgrade TensorFlow
+
 ```
 
 
