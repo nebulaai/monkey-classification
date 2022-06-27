@@ -12,7 +12,14 @@ tensorflow 1.13.1 is required (1.13.1 is the default package version on nbai.io 
 
 ### Install Lib
 Install M1 Tensofolow
-https://caffeinedev.medium.com/how-to-install-tensorflow-on-m1-mac-8e9b91d93706
+https://developer.apple.com/metal/tensorflow-plugin/
+
+Install Jupyter Notebook & Pandas
+```
+conda install -c conda-forge -y pandas jupyter
+```
+
+
 
 Install M1 opencv
 https://blog.roboflow.com/m1-opencv/
@@ -28,6 +35,12 @@ pip install matplotlib
 pip install pillow
 pip install scipy
 `
+
+Let’s open a Jupyter Notebook and do the benchmark. In your terminal run
+
+```
+jupyter notebook
+```
 
 ## Running ipynb
 
