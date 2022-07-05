@@ -1,17 +1,12 @@
 # Image Classification
 
-image_classification.ipynb consists of transfer learning with ResNet50
-
-tensorflow 1.13.1 is required (1.13.1 is the default package version on nbai.io as of Dec 2, 2020)
-
-
 
 ## Dataset
 
 10 Monkey Species: https://www.kaggle.com/slothkong/10-monkey-species
 
 ### Install Lib
-Install M1 Tensofolow
+Install M1 Tensorflow
 https://developer.apple.com/metal/tensorflow-plugin/
 
 Install Jupyter Notebook & Pandas
