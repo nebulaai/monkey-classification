@@ -43,27 +43,8 @@ def data_fetch(ipfs_uri):
             zip_ref.extractall("./dataset")
 
 
-def decrypt_file(key, filename, chunk_size=24 * 1024):
-    input_file = open(filename, 'rb')
-    output_file = open(filename + '.decrypted', 'wb')
-    buffer_size = 65536  # 64kb
-
-    iv = input_file.read(16)
-
-    cipher_encrypt = AES.new(key, AES.MODE_CFB, iv=iv)
-
-    buffer = input_file.read(buffer_size)
-    while len(buffer) > 0:
-        decrypted_bytes = cipher_encrypt.decrypt(buffer)
-        output_file.write(decrypted_bytes)
-        buffer = input_file.read(buffer_size)
-
-    input_file.close()
-    output_file.close()
-    print("Data %s decrypted" % filename)
-
-
 def encrypt_file(key, filename, chunk_size=64 * 1024):
+    print("Data %s encryption starts " % filename)
     file_to_encrypt = filename
     buffer_size = 65536  # 64kb
 
@@ -85,13 +66,52 @@ def encrypt_file(key, filename, chunk_size=64 * 1024):
     print("Data %s encrypted: %s " % (filename, file_to_encrypt + '.encrypted'))
 
 
-# Encrypt file:
-key = get_random_bytes(32)
-encrypt_file(key, './dataset/monkeys.zip')
+def decrypt_file(key, filename, chunk_size=24 * 1024):
+    print("Data %s decryption starts " % filename)
+    input_file = open(filename, 'rb')
+    output_file = open(filename + '.decrypted', 'wb')
+    buffer_size = 65536  # 64kb
 
-# Decrypt file:
-decrypt_file(key, './dataset/monkeys.zip.encrypted')
-##
-# Example usage:
-##
-data_fetch(ipfs_monkey_cid)
+    iv = input_file.read(16)
+
+    cipher_encrypt = AES.new(key, AES.MODE_CFB, iv=iv)
+
+    buffer = input_file.read(buffer_size)
+    while len(buffer) > 0:
+        decrypted_bytes = cipher_encrypt.decrypt(buffer)
+        output_file.write(decrypted_bytes)
+        buffer = input_file.read(buffer_size)
+
+    input_file.close()
+    output_file.close()
+    print("Data %s decrypted" % filename)
+
+
+if __name__ == "__main__":
+    # download data from data source
+    data_fetch(ipfs_monkey_cid)
+    # Encrypt file:
+    f = open("key.txt", "wb")
+    f.write(get_random_bytes(32))
+    f.close()
+
+    # create an data encryption key
+    f = open("key.txt", "rb")
+    key = f.read()
+
+    # encrypt_file
+    encrypt_file(key, './dataset/monkeys.zip')
+
+    # Decrypt file:
+    decrypt_file(key, './dataset/monkeys.zip.encrypted')
+
+    # upload to mcs
+
+    # get task information from mcs
+
+    # get sps from MCS
+
+    # download data from mcs ipfs for machine learning
+    # * decrypt_file
+    # * ML
+    # upload training result to mcs
