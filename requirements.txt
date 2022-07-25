@@ -1,0 +1,8 @@
+ipfshttpclient
+requests~=2.28.1
+crypto
+setuptools==63.1.0
+pycryptodome
+PyNaCl==1.5.0
+numpy
+matplotlib

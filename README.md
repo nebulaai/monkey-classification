@@ -1,82 +1,25 @@
 # Image Classification
 
-image_classification.ipynb consists of transfer learning with ResNet50
-
-tensorflow 1.13.1 is required (1.13.1 is the default package version on nbai.io as of Dec 2, 2020)
-
-
 
 ## Dataset
 
 10 Monkey Species: https://www.kaggle.com/slothkong/10-monkey-species
 
 ### Install Lib
-Install M1 Tensofolow
-https://developer.apple.com/metal/tensorflow-plugin/
 
-Install Jupyter Notebook & Pandas
+Install open cv
+
 ```
-conda install -c conda-forge -y pandas jupyter
+pip install opencv
 ```
-
-Install M1 opencv
-https://blog.roboflow.com/m1-opencv/
-
-`
-conda install -c conda-forge opencv
-`
 
 Install Python lib
 
-`
+```
 pip install matplotlib
 pip install pillow
 pip install scipy
-`
-
-Let’s open a Jupyter Notebook and do the benchmark. In your terminal run
-
 ```
-jupyter notebook
-```
-
-## Running ipynb
-
-Open notebook after login to https://nbai.io
-
-Create folder with name "monkey" in the same directory and unzip the dataset to have the following schema
-
-```
-.
-├── image_classification.ipynb
-└── monkey
-    ├── monkey_labels.txt
-    ├── training
-    │   └── training
-    │       ├── n0
-    │       ├── n1
-    │       ├── n2
-    │       ├── n3
-    │       ├── n4
-    │       ├── n5
-    │       ├── n6
-    │       ├── n7
-    │       ├── n8
-    │       └── n9
-    └── validation
-        └── validation
-            ├── n0
-            ├── n1
-            ├── n2
-            ├── n3
-            ├── n4
-            ├── n5
-            ├── n6
-            ├── n7
-            ├── n8
-            └── n9
-```
-
 
 Install TensorFlow
 
@@ -86,5 +29,37 @@ pip install --upgrade TensorFlow
 
 ```
 
+## Running dataset helper
 
-Tensorflow uses GPU by default if GPU is enabled
+```
+python dataset_helper.py
+```
+
+Download monkeys data (https://calibration-ipfs.filswan.com/ipfs/QmWuHREwKXLbBRV94zxmgG3qP7EADUDuyQ3jAYazC5Pd8c) \
+
+Fetch and extract training and valiadation data. \
+
+Encrypt data
+
+```python
+encrypt_file(key, './dataset/monkeys.zip')
+```
+
+Upload to mcs \
+
+```python
+payload_cid, source_file_upload_id = upload_to_mcs(wallet_address, private_key, web3_api, filepath)
+```
+
+Get file mcs url
+
+```python
+deal_detail = api.get_deal_detail(wallet_address, source_file_upload_id)
+download_url = deal_detail["data"]["source_file_upload_deal"]["ipfs_url"]
+```
+
+Run ML algorithm
+
+```
+image_classification(dataset_path="./download/monkeys/", training_data='training/training', validation_data='validation/validation')
+```
